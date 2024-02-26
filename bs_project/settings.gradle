@@ -1,0 +1,3 @@
+rootProject.name = 'bs_project'
+include 'bs_batch'
+include 'bs_web'
