@@ -1,24 +1,20 @@
+plugins {
+	id 'java-library'
+}
+
+apply plugin: 'java-library'
+
+repositories {
+	mavenCentral()
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-
-	/** Query DSL 추가 **/
-	// QueryDsl 사용 라이브러리 (Q클래스 생성 안됨)
-	implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
-
-	// Q클래스 생성 라이브러리
-	implementation 'com.querydsl:querydsl-apt'
-	// @Entity 어노테이션을 선언한 클래스 탐색하고 Q클래스 생성
-	annotationProcessor "com.querydsl:querydsl-apt:5.0.0:jakarta"
-	// Q파일을 찾지 못해서 발생하는 java.lang.NoClassDefFoundError 에러 대응 코드
-	annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
-	annotationProcessor 'jakarta.annotation:jakarta.annotation-api'
-
-	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	implementation 'org.springframework.boot:spring-boot-starter-aop'
 
 	// Lombok 추가
 	compileOnly 'org.projectlombok:lombok'
@@ -55,40 +51,4 @@ dependencies {
 	// javax.mail:javax.mail-api 라이브러리는 구현체가 포함되어 있지 않아서 구현체 라이브러리 추가
 	implementation group: 'com.sun.mail', name: 'imap', version: '2.0.1'
 
-	// mapstruct 추가
-	implementation 'org.mapstruct:mapstruct:1.5.2.Final'
-	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
-	implementation 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
-	annotationProcessor "org.projectlombok:lombok-mapstruct-binding:0.2.0"
 }
-
-/** QueryDsl 설정 **/
-// gradle build 시 QClass 소스도 함께 build 하기 위해서 sourceSets에 해당 위치를 추가.
-def generated = 'src/main/generated'
-sourceSets {
-	main {
-		java {
-			srcDirs += [ 'src/main/java', generated ]
-		}
-	}
-}
-
-// 자바 9 외 버전에서 사용할 수 있도록 import 설정
-compileJava {
-	options.compilerArgs << '-Aquerydsl.generatedAnnotationClass=javax.annotation.Generated'
-}
-
-// src/main/generated에 annotation processors가 만든 QClass들을 저장
-tasks.withType(JavaCompile) {
-	options.annotationProcessorGeneratedSourcesDirectory  = file(generated)
-}
-// clean 실행 시 생성된 QClass 삭제
-clean {
-	delete file(generated)
-}
-/****/
-
-tasks.named('test') {
-	useJUnitPlatform()
-}
-

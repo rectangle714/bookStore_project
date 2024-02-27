@@ -1,18 +1,20 @@
 buildscript {
     ext {
         springBootVersion = '3.0.6'
+        dependencyManagementVersion = '1.1.0.RELEASE'
     }
     repositories {
         mavenCentral()
     }
     dependencies {
         classpath 'org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}'
-        classpath 'io.spring.gradle:dependency-management-plugin:1.1.0.RELEASE'
+        classpath 'io.spring.gradle:dependency-management-plugin:${dependencyManagementVersion}'
     }
 }
 
 plugins {
     id 'java'
+    id 'java-library'
     id 'org.springframework.boot' version '3.0.6'
     id 'io.spring.dependency-management' version '1.1.0'
 }
@@ -22,6 +24,7 @@ subprojects {
     apply plugin: 'idea'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java-library'
 
     group 'bs_project'
     version '1.0-SNAPSHOT'
@@ -52,9 +55,18 @@ subprojects {
     }
 }
 
+project(':bs_core') {
+    bootJar { enabled = false }
+    jar { enabled = true }
+}
+
 project(':bs_web') {
     bootJar { enabled = true }
     jar { enabled = false }
+
+    dependencies {
+        implementation(project(':bs_core'))
+    }
 }
 
 project(':bs_batch') {
@@ -62,6 +74,6 @@ project(':bs_batch') {
     jar { enabled = false }
 
     dependencies {
-        implementation(project(':bs_web'))
+        implementation(project(':bs_core'))
     }
 }
