@@ -42,7 +42,7 @@ public class MemberController {
 
     /* 전체 사용자 조회 */
     @GetMapping("/findAll")
-    public ResponseEntity<List<Member>> findAll() {
+    public ResponseEntity<List<MemberDTO>> findAll() {
         return ResponseEntity.ok(memberService.findAllMember());
     }
 

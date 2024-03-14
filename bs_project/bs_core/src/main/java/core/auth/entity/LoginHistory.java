@@ -1,9 +1,6 @@
 package core.auth.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
@@ -17,7 +14,8 @@ import java.time.LocalDateTime;
 public class LoginHistory {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "login_history_id")
     private Long id;
     private String userId;
 
@@ -25,6 +23,7 @@ public class LoginHistory {
     private LocalDateTime loginDate;
 
     private String clientIp;
-    private String userAgent;
+    private String clientOs;
+    private String clientBrowser;
 
 }

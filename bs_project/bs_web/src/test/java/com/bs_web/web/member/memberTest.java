@@ -1,9 +1,11 @@
 package com.bs_web.web.member;
 
-import com.bs_web.web.common.entity.Role;
-import com.bs_web.web.member.entity.Member;
-import com.bs_web.web.member.repository.MemberRepository;
+import core.common.entity.Role;
+import core.member.dto.MemberDTO;
+import core.member.entity.Member;
+import core.member.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +61,20 @@ public class memberTest {
         Optional<Member> admin = memberRepository.findByEmail("admin");
         admin.get().updateMember(passwordEncoder.encode("123"), "01011112222", "관리자123", "", "", "");
         memberRepository.save(admin.get());
+    }
+
+    @Test
+    @DisplayName("모든 사용자 조회")
+    void findAllMembers() {
+        Exception e = Assertions.assertThrows(Exception.class, () -> {
+            List<MemberDTO> allMembers = allMembers = memberRepository.findAllMembers();
+            for (MemberDTO member: allMembers) {
+                log.info("로그인 날짜 : " + member.getLoginDate());
+            }
+        });
+
+        log.error(e.getMessage());
+
     }
 
 }

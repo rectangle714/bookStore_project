@@ -1,6 +1,6 @@
 package com.bs_web.web.item;
 
-import com.bs_web.web.item.repository.item.ItemRepository;
+import core.item.repository.item.ItemRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

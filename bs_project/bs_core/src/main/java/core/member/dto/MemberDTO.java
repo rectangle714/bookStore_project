@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -22,6 +24,7 @@ public class MemberDTO {
     private String zipNo;
     private String address;
     private String addressDetail;
+    private LocalDateTime loginDate;
 
     public Member toMember() {
         return Member.builder()

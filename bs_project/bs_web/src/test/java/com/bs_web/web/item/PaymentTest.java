@@ -1,12 +1,12 @@
 package com.bs_web.web.item;
 
-import com.bs_web.web.cart.repository.CartRepository;
-import com.bs_web.web.item.entity.Payment;
-import com.bs_web.web.member.entity.Member;
-import com.bs_web.web.member.repository.MemberRepository;
-import com.bs_web.web.item.dto.PaymentDTO;
-import com.bs_web.web.item.mapper.PaymentMapper;
-import com.bs_web.web.item.repository.payment.PaymentRepository;
+import core.cart.repository.CartRepository;
+import core.item.dto.PaymentDTO;
+import core.item.entity.Payment;
+import core.item.mapper.PaymentMapper;
+import core.item.repository.payment.PaymentRepository;
+import core.member.entity.Member;
+import core.member.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

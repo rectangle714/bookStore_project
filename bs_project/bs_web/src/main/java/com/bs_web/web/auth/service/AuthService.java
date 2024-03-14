@@ -12,6 +12,7 @@ import core.auth.dto.LoginHistoryDTO;
 import core.auth.dto.NaverLoginDTO;
 import core.auth.entity.LoginHistory;
 import core.auth.mapper.LoginMapper;
+import core.auth.repository.LoginHistoryRepository;
 import core.common.entity.Role;
 import core.common.entity.SocialType;
 import core.member.dto.MemberDTO;
@@ -47,6 +48,7 @@ public class AuthService {
     private final AuthenticationManagerBuilder managerBuilder;
     private final ServerAPIs serverAPIs;
     private final MemberRepository memberRepository;
+    private final LoginHistoryRepository loginHistoryRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
     private final RedisUtil redisUtil;
@@ -106,19 +108,22 @@ public class AuthService {
         UserDetails userDetails = (UserDetails) principal;
 
         String userId = userDetails.getUsername();
-        String userAgent = SecurityUtil.getUserAgent(request);
+
+        String userAgent = request.getHeader("User-Agent");
+        String clientBrowser = SecurityUtil.getClientBrowser(userAgent);
+        String clientOS = SecurityUtil.getClientOS(userAgent);
         String clientIp = SecurityUtil.getClientIp(request);
 
 //        LoginHistory loginHistory = LoginMapper.INSTANCE.updateFromDto();
         LoginHistoryDTO loginHistoryDTO = new LoginHistoryDTO();
         loginHistoryDTO.setUserId(userId);
-        loginHistoryDTO.setUserAgent(userAgent);
         loginHistoryDTO.setClientIp(clientIp);
+        loginHistoryDTO.setClientBrowser(clientBrowser);
+        loginHistoryDTO.setClientOs(clientOS);
 
         LoginHistory loginHistory = LoginMapper.INSTANCE.updateFromDto(loginHistoryDTO);
+        loginHistoryRepository.save(loginHistory);
 
-        // 로그인 히스토리 저장 작업
-//        historyService.saveLogOnLogin(loginHistory);
         // 회원 별 최종 로그인 날짜 업데이트 작업
 //        memberService.updateLastLoginDt(userId, LocalDateTime.now());
 

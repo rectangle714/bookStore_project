@@ -38,11 +38,9 @@ public class Member extends Base {
     @Enumerated(EnumType.STRING)
     private SocialType socialType; // KAKAO, NAVER, GOOGLE
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+    @Transient
     private LocalDateTime loginDate;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
-    private LocalDateTime logoutDate;
     public void updateMember(String password, String phone , String nickname, String zipNo, String address, String addressDetail) {
         this.password = password;
         this.phone = phone;

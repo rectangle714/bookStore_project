@@ -71,8 +71,8 @@ public class MemberService {
         }
     }
 
-    public List<Member> findAllMember() {
-        return memberRepository.findAll();
+    public List<MemberDTO> findAllMember() {
+        return memberRepository.findAllMembers();
     }
 
     public Member findByEmail(String email, String path) {
