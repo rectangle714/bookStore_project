@@ -14,7 +14,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MemberDTO {
-    private String memberId;
+
+    private long memberId;
     private String email;
     private String password;
     private String nickname;
@@ -25,18 +26,7 @@ public class MemberDTO {
     private String address;
     private String addressDetail;
     private LocalDateTime loginDate;
-
-    public Member toMember() {
-        return Member.builder()
-                .email(email)
-                .password(password)
-                .nickname(nickname)
-                .phone(phone)
-                .role(Role.USER)
-                .zipNo(zipNo)
-                .address(address)
-                .addressDetail(addressDetail)
-                .build();
-    }
+    private LocalDateTime registerDate;
+    private LocalDateTime updateDate;
 
 }

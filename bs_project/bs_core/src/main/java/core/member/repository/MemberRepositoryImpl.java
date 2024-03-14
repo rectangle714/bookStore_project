@@ -25,7 +25,7 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom {
         List<MemberDTO> memberDtoList = new ArrayList<>();
         memberDtoList =  queryFactory
                 .select(Projections.bean(MemberDTO.class,
-                        member.id, member.email, member.nickname, member.role,
+                        member.id.as("memberId"), member.email, member.nickname,
                         member.registerDate, member.updateDate, member.socialType,
                         ExpressionUtils.as(
                                 JPAExpressions.select(loginHistory.loginDate)
@@ -41,11 +41,6 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom {
                         )))
                 .from(member)
                 .fetch();
-
-        memberDtoList.forEach(memberDTO -> {
-             log.info(memberDTO.getRole());
-        });
-
         return memberDtoList;
     }
 }
