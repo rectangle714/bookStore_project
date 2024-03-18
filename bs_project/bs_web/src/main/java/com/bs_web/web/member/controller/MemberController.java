@@ -27,8 +27,8 @@ public class MemberController {
 
     /* 사용자 정보 변경 */
     @PostMapping("/update")
-    public ResponseEntity<String> setMemberNickname(@RequestBody MemberDTO request) throws BusinessException {
-        memberService.changeMemberInfo(request);
+    public ResponseEntity<String> setMemberNickname(@RequestBody MemberDTO memberDTO) throws BusinessException {
+        memberService.changeMemberInfo(memberDTO);
         return ResponseEntity.ok("success");
     }
 

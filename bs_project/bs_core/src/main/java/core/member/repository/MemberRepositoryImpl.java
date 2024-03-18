@@ -5,7 +5,6 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import core.member.dto.MemberDTO;
-import core.member.entity.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,10 +22,10 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom {
     @Override
     public List<MemberDTO> findAllMembers() {
         List<MemberDTO> memberDtoList = new ArrayList<>();
-        memberDtoList =  queryFactory
+        memberDtoList = queryFactory
                 .select(Projections.bean(MemberDTO.class,
-                        member.id.as("memberId"), member.email, member.nickname,
-                        member.registerDate, member.updateDate, member.socialType,
+                        member.id.as("memberId"), member.email, member.nickname, member.socialType.stringValue().as("socialType"),
+                        member.registerDate, member.updateDate, member.role.stringValue().as("role"),
                         ExpressionUtils.as(
                                 JPAExpressions.select(loginHistory.loginDate)
                                         .from(loginHistory)

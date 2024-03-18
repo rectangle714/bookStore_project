@@ -1,7 +1,6 @@
 package core.member.dto;
 
-import core.common.entity.Role;
-import core.member.entity.Member;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,12 +20,17 @@ public class MemberDTO {
     private String nickname;
     private String phone;
     private String role;
+    private String socialType;
     private String authCode;
     private String zipNo;
     private String address;
     private String addressDetail;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime loginDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime registerDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime updateDate;
 
 }

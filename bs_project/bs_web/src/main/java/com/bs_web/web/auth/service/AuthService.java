@@ -114,7 +114,6 @@ public class AuthService {
         String clientOS = SecurityUtil.getClientOS(userAgent);
         String clientIp = SecurityUtil.getClientIp(request);
 
-//        LoginHistory loginHistory = LoginMapper.INSTANCE.updateFromDto();
         LoginHistoryDTO loginHistoryDTO = new LoginHistoryDTO();
         loginHistoryDTO.setUserId(userId);
         loginHistoryDTO.setClientIp(clientIp);
@@ -123,9 +122,6 @@ public class AuthService {
 
         LoginHistory loginHistory = LoginMapper.INSTANCE.updateFromDto(loginHistoryDTO);
         loginHistoryRepository.save(loginHistory);
-
-        // 회원 별 최종 로그인 날짜 업데이트 작업
-//        memberService.updateLastLoginDt(userId, LocalDateTime.now());
 
         return token;
     }
