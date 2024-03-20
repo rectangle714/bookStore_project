@@ -72,7 +72,7 @@ public class MemberService {
     }
 
     public List<MemberDTO> findAllMember() {
-        return memberRepository.findAllMembers();
+        return memberRepository.findAllMemberList();
     }
 
     public Member findByEmail(String email, String path) {

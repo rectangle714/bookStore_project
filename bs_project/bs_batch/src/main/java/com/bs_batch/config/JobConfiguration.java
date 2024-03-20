@@ -1,5 +1,6 @@
 package com.bs_batch.config;
 
+import core.member.dto.MemberDTO;
 import core.member.entity.Member;
 import core.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +45,7 @@ public class JobConfiguration {
     @Bean
     public Step expiredMemberStep(JobRepository jobRepository) {
         return new StepBuilder("expiredMemberStep", jobRepository)
-                .<Member, Member>chunk(100, transactionManager)
+                .<MemberDTO, MemberDTO>chunk(100, transactionManager)
                 .reader(expiredMemberReader())
                 .processor(expiredMemberProcessor())
                 .writer(expiredMemberWriter())
@@ -53,23 +54,23 @@ public class JobConfiguration {
 
     @Bean
     @StepScope
-    public ListItemReader<Member> expiredMemberReader() {
-        log.info("****** 사용자 조회 시작 ******");
-        List<Member> expiredMemberList = new ArrayList<>();
-        expiredMemberList = memberRepository.findAll();
-        log.info("****** 사용자 조회 끝 ******");
-        return new ListItemReader<>(expiredMemberList);
+    public ListItemReader<MemberDTO> expiredMemberReader() {
+        log.info("****** Batch 사용자 조회 시작 ******");
+        List<MemberDTO> expiredMemberList = new ArrayList<>();
+        expiredMemberList = memberRepository.findAllMemberList();
+        log.info("****** Batch 사용자 조회 끝 ******");
+        return new ListItemReader<MemberDTO>(expiredMemberList);
     }
 
-    public ItemProcessor<Member, Member> expiredMemberProcessor() {
+    public ItemProcessor<MemberDTO, MemberDTO> expiredMemberProcessor() {
         return member -> {
             log.info(member.getEmail());
             return member;
         };
     }
 
-    public ItemWriter<Member> expiredMemberWriter() {
-        log.info("********** 사용자 writer 시작 **********");
+    public ItemWriter<MemberDTO> expiredMemberWriter() {
+        log.info("********** Batch 사용자 writer 시작 **********");
         return memberList -> {
             memberList.forEach(
                     member -> log.info(member.getEmail())

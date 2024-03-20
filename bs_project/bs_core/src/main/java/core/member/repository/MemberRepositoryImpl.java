@@ -2,6 +2,7 @@ package core.member.repository;
 
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.NumberExpression;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import core.member.dto.MemberDTO;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import static core.member.entity.QMember.member;
 import static core.auth.entity.QLoginHistory.loginHistory;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom {
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public List<MemberDTO> findAllMembers() {
+    public List<MemberDTO> findAllMemberList() {
         List<MemberDTO> memberDtoList = new ArrayList<>();
         memberDtoList = queryFactory
                 .select(Projections.bean(MemberDTO.class,
@@ -40,6 +42,12 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom {
                         )))
                 .from(member)
                 .fetch();
+        log.info("30일 전 날짜 " + LocalDateTime.now().minusDays(30));
         return memberDtoList;
+    }
+
+    @Override
+    public List<MemberDTO> findExpiredMember() {
+        return null;
     }
 }

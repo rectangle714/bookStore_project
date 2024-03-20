@@ -22,9 +22,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return memberRepository.findByEmail(username)
+        UserDetails userDetails = memberRepository.findByEmail(username)
                 .map(this::createUserDetails)
                 .orElseThrow(() -> new UsernameNotFoundException(username + " 을 DB에서 찾을 수 없습니다."));
+        return userDetails;
     }
 
     private UserDetails createUserDetails(Member member) {
@@ -32,10 +33,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         User userDetails = null;
         if(null != member.getPassword() && !"".equals(member.getPassword())) {
             userDetails =  new User(String.valueOf(member.getEmail()), member.getPassword(), Collections.singleton(grantedAuthority));
-        }
-
-        if(member.getSocialType() != null) {
-            throw new UsernameNotFoundException(member.getEmail() + "은 social 계정입니다.");
         }
 
         return userDetails;

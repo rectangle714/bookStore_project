@@ -6,6 +6,8 @@ import core.common.entity.Role;
 import core.common.entity.SocialType;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Comment;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -37,6 +39,11 @@ public class Member extends Base {
     private String socialId; // 로그인한 소셜 타입의 식별자 값 (일반 로그인인 경우 null)
     @Enumerated(EnumType.STRING)
     private SocialType socialType; // KAKAO, NAVER, GOOGLE
+
+    @Comment("사용자 계정 만료 상태값")
+    @Column(name = "expiredYn", length = 1)
+    @ColumnDefault("'N'")
+    private String expiredYn;
 
     @Transient
     private LocalDateTime loginDate;

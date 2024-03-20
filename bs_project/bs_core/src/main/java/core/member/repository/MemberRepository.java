@@ -15,5 +15,5 @@ public interface MemberRepository extends JpaRepository<Member, Long>, MemberRep
     public boolean existsByEmail(String email);
 
     @Override
-    public List<MemberDTO> findAllMembers();
+    public List<MemberDTO> findAllMemberList();
 }

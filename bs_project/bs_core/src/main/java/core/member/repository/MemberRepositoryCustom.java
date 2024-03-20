@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface MemberRepositoryCustom {
 
-    public List<MemberDTO> findAllMembers();
+    public List<MemberDTO> findAllMemberList();
+    public List<MemberDTO> findExpiredMember();
 
 }
