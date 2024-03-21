@@ -2,7 +2,9 @@ package com.bs_batch.config;
 
 import core.member.dto.MemberDTO;
 import core.member.entity.Member;
+import core.member.mapper.MemberMapper;
 import core.member.repository.MemberRepository;
+import jakarta.persistence.EntityManagerFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -15,15 +17,19 @@ import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
+import org.springframework.batch.item.database.JpaItemWriter;
+import org.springframework.batch.item.database.builder.JpaItemWriterBuilder;
 import org.springframework.batch.item.support.ListItemReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Configuration
@@ -33,9 +39,10 @@ public class JobConfiguration {
 
     private final MemberRepository memberRepository;
     private final PlatformTransactionManager transactionManager;
+    private final EntityManagerFactory entityManagerFactory;
 
     @Bean
-    public Job expiredMemberJob(JobRepository jobRepository, Step step) {
+    public Job expiredMemberJob(JobRepository jobRepository, Step step) throws Exception {
         return new JobBuilder("selectExpiredMemberJob", jobRepository)
                 .preventRestart()
                 .start(expiredMemberStep(jobRepository))
@@ -43,9 +50,9 @@ public class JobConfiguration {
     }
 
     @Bean
-    public Step expiredMemberStep(JobRepository jobRepository) {
+    public Step expiredMemberStep(JobRepository jobRepository) throws Exception{
         return new StepBuilder("expiredMemberStep", jobRepository)
-                .<MemberDTO, MemberDTO>chunk(100, transactionManager)
+                .<MemberDTO, Member>chunk(100, transactionManager)
                 .reader(expiredMemberReader())
                 .processor(expiredMemberProcessor())
                 .writer(expiredMemberWriter())
@@ -57,25 +64,42 @@ public class JobConfiguration {
     public ListItemReader<MemberDTO> expiredMemberReader() {
         log.info("****** Batch 사용자 조회 시작 ******");
         List<MemberDTO> expiredMemberList = new ArrayList<>();
-        expiredMemberList = memberRepository.findAllMemberList();
+        expiredMemberList = memberRepository.findExpiredMember();
         log.info("****** Batch 사용자 조회 끝 ******");
         return new ListItemReader<MemberDTO>(expiredMemberList);
     }
 
-    public ItemProcessor<MemberDTO, MemberDTO> expiredMemberProcessor() {
-        return member -> {
-            log.info(member.getEmail());
+    @Bean
+    @StepScope
+    public ItemProcessor<MemberDTO, Member> expiredMemberProcessor() {
+        List<MemberDTO> expiredMemberList = new ArrayList<MemberDTO>();
+
+        return memberDTO -> {
+            if(memberDTO.getLoginDate() == null) {
+                memberDTO.setLoginDate(memberDTO.getRegisterDate());
+            }
+
+            if(memberDTO.getLoginDate().isBefore(LocalDateTime.now().minusMonths(3))) {
+                memberDTO.setExpiredYn("Y");
+            } else {
+                memberDTO.setExpiredYn("N");
+            }
+
+            Member member = MemberMapper.INSTANCE.toMemberBatch(memberDTO);
             return member;
         };
     }
 
-    public ItemWriter<MemberDTO> expiredMemberWriter() {
+    @Bean
+    @StepScope
+    public ItemWriter<Member> expiredMemberWriter() throws Exception {
         log.info("********** Batch 사용자 writer 시작 **********");
-        return memberList -> {
-            memberList.forEach(
-                    member -> log.info(member.getEmail())
-            );
-        };
+        JpaItemWriter<Member> memberWriter = new JpaItemWriterBuilder<Member>()
+                .entityManagerFactory(entityManagerFactory)
+                .build();
+
+        memberWriter.afterPropertiesSet();
+        return memberWriter;
     }
 
 }

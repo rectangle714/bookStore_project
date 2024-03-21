@@ -2,9 +2,14 @@ package core.member.repository;
 
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.SubQueryExpression;
+import com.querydsl.core.types.dsl.CaseBuilder;
+import com.querydsl.core.types.dsl.EnumExpression;
+import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.core.types.dsl.NumberExpression;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import core.common.entity.SocialType;
 import core.member.dto.MemberDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +20,7 @@ import static core.auth.entity.QLoginHistory.loginHistory;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -42,12 +48,36 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom {
                         )))
                 .from(member)
                 .fetch();
-        log.info("30일 전 날짜 " + LocalDateTime.now().minusDays(30));
+
         return memberDtoList;
     }
 
     @Override
     public List<MemberDTO> findExpiredMember() {
-        return null;
+        List<MemberDTO> memberDtoList = new ArrayList<>();
+        EnumExpression<SocialType> socialType = member.socialType;
+
+        memberDtoList = queryFactory
+                .select(Projections.bean(MemberDTO.class,
+                        member.id.as("memberId"), member.email,member.name, member.nickname,
+                        member.password, member.phone, member.socialId, socialType.stringValue().as("socialType"),
+                        member.address, member.addressDetail, member.zipNo,
+                        member.registerDate, member.updateDate, member.expiredYn,
+                        ExpressionUtils.as(
+                                JPAExpressions.select(loginHistory.loginDate)
+                                        .from(loginHistory)
+                                        .where(
+                                                loginHistory.id.eq(
+                                                        JPAExpressions
+                                                                .select(loginHistory.id.max())
+                                                                .from(loginHistory)
+                                                                .where(loginHistory.userId.eq(member.email))
+                                                )
+                                        ), "loginDate"
+                        )))
+                .from(member)
+                .fetch();
+
+        return memberDtoList;
     }
 }

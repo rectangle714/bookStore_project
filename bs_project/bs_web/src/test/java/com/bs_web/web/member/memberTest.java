@@ -67,7 +67,7 @@ public class memberTest {
     @DisplayName("모든 사용자 조회")
     void findAllMembers() {
         Exception e = Assertions.assertThrows(Exception.class, () -> {
-            List<MemberDTO> allMembers = allMembers = memberRepository.findAllMembers();
+            List<MemberDTO> allMembers = allMembers = memberRepository.findAllMemberList();
             for (MemberDTO member: allMembers) {
                 log.info("로그인 날짜 : " + member.getLoginDate());
             }
@@ -75,6 +75,13 @@ public class memberTest {
 
         log.error(e.getMessage());
 
+    }
+
+    @Test
+    @DisplayName("만료된 사용자 조회")
+    void findExpiredMemberList() {
+        List<MemberDTO> expiredMember = memberRepository.findExpiredMember();
+        expiredMember.forEach(memberDTO ->  { log.info(memberDTO.getLoginDate().toString());});
     }
 
 }

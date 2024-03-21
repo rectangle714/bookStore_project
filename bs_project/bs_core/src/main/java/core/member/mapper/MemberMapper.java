@@ -24,6 +24,10 @@ public interface MemberMapper {
     @Mapping(target = "role", constant = "USER")
     public Member toMember(MemberDTO memberDTO);
 
+    @Mapping(target = "id", source = "memberId")
+    @Mapping(target = "role", constant = "USER")
+    public Member toMemberBatch(MemberDTO memberDTO);
+
     @Named("enumToString")
     default String enumToString(Role role) {
         return role.toString();

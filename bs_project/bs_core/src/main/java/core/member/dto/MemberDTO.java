@@ -25,6 +25,7 @@ public class MemberDTO {
     private String zipNo;
     private String address;
     private String addressDetail;
+    private String expiredYn;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime loginDate;
