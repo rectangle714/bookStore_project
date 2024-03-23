@@ -25,7 +25,7 @@ public interface MemberMapper {
     public Member toMember(MemberDTO memberDTO);
 
     @Mapping(target = "id", source = "memberId")
-    @Mapping(target = "role", constant = "USER")
+    @Mapping(target = "role", source = "role")
     public Member toMemberBatch(MemberDTO memberDTO);
 
     @Named("enumToString")
