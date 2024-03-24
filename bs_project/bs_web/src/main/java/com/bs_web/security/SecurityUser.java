@@ -40,6 +40,7 @@ public class SecurityUser extends User {
         super(memberDTO.getEmail(), memberDTO.getPassword() == null ? "" : memberDTO.getPassword(),
                 makeGrantedAuthority(memberDTO.getRole()));
         this.memberId = memberDTO.getMemberId();
+        this.password = memberDTO.getPassword();
         this.email = memberDTO.getEmail();
         this.password = getPassword();
         this.nickname = getNickname();

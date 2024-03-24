@@ -1,6 +1,8 @@
 package com.bs_web.security;
 
+import core.member.dto.MemberDTO;
 import core.member.entity.Member;
+import core.member.mapper.MemberMapper;
 import core.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,26 +25,15 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         Member member = memberRepository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException(username + " 을 DB에서 찾을 수 없습니다."));
-
-
-
-        UserDetails userDetails = memberRepository.findByEmail(username)
-                .map(this::createUserDetails)
-                .orElseThrow(() -> new UsernameNotFoundException(username + " 을 DB에서 찾을 수 없습니다."));
-        return userDetails;
+        return createUserDetails(member);
     }
 
     private UserDetails createUserDetails(Member member) {
         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(member.getRole().toString());
-        User userDetails = null;
-        if(null != member.getPassword() && !"".equals(member.getPassword())) {
-            userDetails =  new User(String.valueOf(member.getEmail()), member.getPassword(), Collections.singleton(grantedAuthority));
-        }
-
-        return userDetails;
+        MemberDTO memberDTO = MemberMapper.INSTANCE.toDTO(member);
+        return new SecurityUser(memberDTO);
     }
 
 }
