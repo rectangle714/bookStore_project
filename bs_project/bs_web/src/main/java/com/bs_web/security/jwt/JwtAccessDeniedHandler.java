@@ -1,4 +1,4 @@
-package com.bs_web.jwt;
+package com.bs_web.security.jwt;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

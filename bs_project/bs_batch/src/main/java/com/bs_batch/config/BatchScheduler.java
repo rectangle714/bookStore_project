@@ -24,7 +24,7 @@ public class BatchScheduler {
     private final Step step;
     private final JobConfiguration jobConfiguration;
 
-    @Scheduled(cron = "0 2 * * *")
+    @Scheduled(cron = "0 2 * * * *")
     public String runExpiredMemberJob() {
         // job parameter 설정
         JobParameters jobParameters = new JobParametersBuilder().addLong("time", System.currentTimeMillis()).toJobParameters();

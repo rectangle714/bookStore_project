@@ -6,7 +6,7 @@ import com.bs_web.common.util.RedisUtil;
 import com.bs_web.common.code.ErrorCode;
 import com.bs_web.common.exception.BusinessException;
 import com.bs_web.security.TokenDTO;
-import com.bs_web.jwt.TokenProvider;
+import com.bs_web.security.jwt.TokenProvider;
 import core.auth.dto.KakaoLoginDTO;
 import core.auth.dto.LoginHistoryDTO;
 import core.auth.dto.NaverLoginDTO;
@@ -37,7 +37,6 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Map;
 

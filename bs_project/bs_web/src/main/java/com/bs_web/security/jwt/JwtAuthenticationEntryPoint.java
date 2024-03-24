@@ -1,4 +1,4 @@
-package com.bs_web.jwt;
+package com.bs_web.security.jwt;
 
 import com.bs_web.common.code.ErrorCode;
 import jakarta.servlet.ServletException;

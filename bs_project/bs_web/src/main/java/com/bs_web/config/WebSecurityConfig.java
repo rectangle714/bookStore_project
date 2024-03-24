@@ -1,9 +1,9 @@
 package com.bs_web.config;
 
 import com.bs_web.common.util.RedisUtil;
-import com.bs_web.jwt.JwtAccessDeniedHandler;
-import com.bs_web.jwt.JwtAuthenticationEntryPoint;
-import com.bs_web.jwt.TokenProvider;
+import com.bs_web.security.jwt.JwtAccessDeniedHandler;
+import com.bs_web.security.jwt.JwtAuthenticationEntryPoint;
+import com.bs_web.security.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
