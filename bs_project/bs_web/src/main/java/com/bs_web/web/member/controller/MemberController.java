@@ -1,12 +1,16 @@
 package com.bs_web.web.member.controller;
 
 import com.bs_web.common.exception.BusinessException;
+import com.bs_web.security.SecurityUser;
 import com.bs_web.web.member.service.MemberService;
 import core.member.dto.MemberDTO;
 import core.member.entity.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,9 +24,8 @@ public class MemberController {
 
     /* 마이페이지 */
     @GetMapping("/me")
-    public ResponseEntity<MemberDTO> findMemberInfo() {
-        MemberDTO myInfoBySecurity = memberService.getMyInfoBySecurity();
-        return ResponseEntity.ok(myInfoBySecurity);
+    public ResponseEntity<SecurityUser> findMemberInfo(@AuthenticationPrincipal SecurityUser securityUser) {
+        return ResponseEntity.ok(securityUser);
     }
 
     /* 사용자 정보 변경 */

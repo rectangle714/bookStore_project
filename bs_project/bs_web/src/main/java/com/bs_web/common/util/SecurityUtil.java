@@ -6,16 +6,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 public class SecurityUtil {
 
-    public static String getCurrentMemberEmail() {
-        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        if(authentication == null || authentication.getName() == null) {
-            throw new RuntimeException("Security Context에 인증 정보가 없습니다.");
-        }
-
-        return authentication.getName();
-    }
-
     /* 클라이언트 IP 정보 조회 */
     public static String getClientIp(HttpServletRequest request) {
         String ip = request.getHeader("X-Forwarded-For");

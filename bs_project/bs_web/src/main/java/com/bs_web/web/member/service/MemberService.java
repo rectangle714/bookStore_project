@@ -36,14 +36,6 @@ public class MemberService {
     private final RedisUtil redisUtil;
     private final PasswordEncoder passwordEncoder;
 
-    public MemberDTO getMyInfoBySecurity() {
-        String email = SecurityUtil.getCurrentMemberEmail();
-        MemberDTO memberDTO = memberRepository.findByEmail(SecurityUtil.getCurrentMemberEmail())
-                .map(MemberMapper.INSTANCE::toDTO)
-                .orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다."));
-        return memberDTO;
-    }
-
     @Transactional
     public void changeMemberInfo(MemberDTO memberDTO) throws BusinessException{
         Member member = memberRepository.findByEmail(memberDTO.getEmail()).orElseThrow(() ->
