@@ -9,6 +9,7 @@ import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.core.types.dsl.NumberExpression;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import core.common.entity.Role;
 import core.common.entity.SocialType;
 import core.member.dto.MemberDTO;
 import lombok.RequiredArgsConstructor;
@@ -55,11 +56,12 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom {
     @Override
     public List<MemberDTO> findExpiredMember() {
         List<MemberDTO> memberDtoList = new ArrayList<>();
+        EnumExpression<Role> role = member.role;
         EnumExpression<SocialType> socialType = member.socialType;
 
         memberDtoList = queryFactory
                 .select(Projections.bean(MemberDTO.class,
-                        member.id.as("memberId"), member.email,member.name, member.nickname,
+                        member.id.as("memberId"), member.email,member.name, member.nickname, role.stringValue().as("role"),
                         member.password, member.phone, member.socialId, socialType.stringValue().as("socialType"),
                         member.address, member.addressDetail, member.zipNo,
                         member.registerDate, member.updateDate, member.expiredYn,

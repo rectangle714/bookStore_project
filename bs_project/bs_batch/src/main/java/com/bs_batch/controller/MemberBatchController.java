@@ -19,7 +19,7 @@ public class MemberBatchController {
         if ("success".equals(batchScheduler.runExpiredMemberJob())) {
             return ResponseEntity.ok("success");
         } else {
-            return ResponseEntity.internalServerError().body("fail");
+            return ResponseEntity.ok("fail");
         }
     }
 
