@@ -1,0 +1,31 @@
+.header-menu-wrap {
+    height:80px;
+    background-color:white;
+    display:flex;
+    justify-content:center
+}
+
+.header-menu-wrap 
+    .header-menu-contents {
+    width:80%; 
+    background-color:white;
+    display:flex;
+    justify-content:center;
+}
+
+.header-menu-wrap 
+    .header-menu-contents 
+    .header-menu-item {
+    width:20%;
+    background-color:white;
+    color:black;
+    display:flex;
+    justify-content:center;
+}
+
+.header-menu-wrap 
+    .header-menu-contents 
+    .header-menu-item div {
+    display:flex;
+    align-items:center;
+}
