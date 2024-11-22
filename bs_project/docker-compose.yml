@@ -1,21 +1,21 @@
 services:
-  bs_batch:
-    build:
-      context: ./bs_batch
-    container_name: bs_batch
-    ports:
-      - "8081:8080" # bs_batch 서버 포트 (내부 8080 -> 외부 8081로 매핑)
-    environment:
-      - SPRING_PROFILES_ACTIVE=prod
-    networks:
-      - bs_network
-
   bs_web:
     build:
       context: ./bs_web
     container_name: bs_web
     ports:
-      - "8082:8080" # bs_web 서버 포트 (내부 8080 -> 외부 8082로 매핑)
+      - "30001:30001" # bs_web 서버 포트 (내부 8080 -> 외부 8082로 매핑)
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    networks:
+      - bs_network
+
+  bs_batch:
+    build:
+      context: ./bs_batch
+    container_name: bs_batch
+    ports:
+      - "30002:30002" # bs_batch 서버 포트 (내부 8080 -> 외부 8081로 매핑)
     environment:
       - SPRING_PROFILES_ACTIVE=prod
     networks:
