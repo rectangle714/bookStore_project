@@ -2,11 +2,11 @@ package com.bs_web.web.item.controller;
 
 import com.bs_web.common.exception.BusinessException;
 import com.bs_web.web.item.service.ItemService;
-import core.item.dto.ItemDTO;
-import core.item.dto.PaymentDTO;
-import core.item.dto.ReviewDTO;
-import core.item.entity.Item;
-import core.item.mapper.ItemMapper;
+import com.bs_web.web.item.dto.ItemDTO;
+import com.bs_web.web.item.dto.PaymentDTO;
+import com.bs_web.web.item.dto.ReviewDTO;
+import com.bs_web.web.item.entity.Item;
+import com.bs_web.web.item.mapper.ItemMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

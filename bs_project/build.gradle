@@ -66,26 +66,3 @@ subprojects {
 bootJar {
     enabled = false
 }
-
-project(':bs_core') {
-    bootJar { enabled = false }
-    jar { enabled = true }
-}
-
-project(':bs_web') {
-    bootJar { enabled = true }
-    jar { enabled = false }
-
-    dependencies {
-        implementation(project(':bs_core'))
-    }
-}
-
-project(':bs_batch') {
-    bootJar { enabled = true }
-    jar { enabled = false }
-
-    dependencies {
-        implementation(project(':bs_core'))
-    }
-}

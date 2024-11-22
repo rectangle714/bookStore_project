@@ -1,13 +1,12 @@
 package com.bs_web.security;
 
-import core.member.dto.MemberDTO;
-import core.member.entity.Member;
-import core.member.mapper.MemberMapper;
-import core.member.repository.MemberRepository;
+import com.bs_web.web.member.dto.MemberDTO;
+import com.bs_web.web.member.entity.Member;
+import com.bs_web.web.member.mapper.MemberMapper;
+import com.bs_web.web.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

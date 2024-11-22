@@ -1,7 +1,7 @@
 package com.bs_web.oauth2;
 
-import core.auth.dto.KakaoLoginDTO;
-import core.auth.dto.NaverLoginDTO;
+import com.bs_web.web.auth.dto.KakaoLoginDTO;
+import com.bs_web.web.auth.dto.NaverLoginDTO;
 import retrofit2.Call;
 import retrofit2.http.*;
 

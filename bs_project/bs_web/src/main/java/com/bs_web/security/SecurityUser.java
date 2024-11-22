@@ -1,9 +1,9 @@
 package com.bs_web.security;
 
+import com.bs_web.web.member.dto.MemberDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import core.member.dto.MemberDTO;
+import com.bs_web.web.member.dto.MemberDTO;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;

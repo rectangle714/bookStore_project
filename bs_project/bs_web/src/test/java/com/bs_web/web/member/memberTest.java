@@ -1,9 +1,9 @@
 package com.bs_web.web.member;
 
-import core.common.entity.Role;
-import core.member.dto.MemberDTO;
-import core.member.entity.Member;
-import core.member.repository.MemberRepository;
+import com.bs_web.common.entity.Role;
+import com.bs_web.web.member.dto.MemberDTO;
+import com.bs_web.web.member.entity.Member;
+import com.bs_web.web.member.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Slf4j
-@SpringBootTest
 public class memberTest {
 
     @Autowired

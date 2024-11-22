@@ -1,7 +1,7 @@
 package com.bs_web.web.cart.controller;
 
 import com.bs_web.web.cart.service.CartService;
-import core.cart.dto.CartDTO;
+import com.bs_web.web.cart.dto.CartDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
