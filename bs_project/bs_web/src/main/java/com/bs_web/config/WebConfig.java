@@ -14,7 +14,12 @@ public class WebConfig implements WebMvcConfigurer {
                 .exposedHeaders("Authorization")
                 .exposedHeaders("RefreshToken")
                 .allowCredentials(true)
-                .allowedOrigins("http://localhost:3000","http://54.178.130.1:3000")
+                .allowedOrigins(
+                        "http://localhost:3000",
+                        "http://54.178.130.1:3000",
+                        "http://localhost:3001",
+                        "http://192.168.30.10:3001"
+                )
                 .allowedMethods("OPTIONS", "GET", "POST", "PUT", "DELETE");
     }
 

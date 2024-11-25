@@ -6,8 +6,13 @@ plugins {
 }
 
 group 'com'
-version = '1.0.0'
 sourceCompatibility = '17'
+
+bootJar {
+	baseName = 'bs_web'
+	version = '1.0.0'
+	archiveFileName = 'bs_web.jar'
+}
 
 repositories {
 	mavenCentral()
@@ -69,7 +74,6 @@ dependencies {
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
 	implementation 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
 	annotationProcessor "org.projectlombok:lombok-mapstruct-binding:0.2.0"
-
 
 	// Junit lombok 사용을 위한 추가
 	testCompileOnly 'org.projectlombok:lombok'
