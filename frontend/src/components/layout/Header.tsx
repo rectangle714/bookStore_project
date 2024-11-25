@@ -25,6 +25,8 @@ const Header = () => {
             navigate('/admin/info');
         } else if(path == 'cart') {
             navigate('/cart');
+        } else if(path == 'chat') {
+            window.location.href = 'http://localhost:3001';
         }
     }
     
@@ -98,6 +100,8 @@ const Header = () => {
                                         <span onClick={(e)=>navFunction(e,'signup')} style={{fontSize:'12px', cursor:'pointer', color:'black'}}>회원가입</span>
                                         <span style={{width:'1px', height:'15px', margin:'0px 12px', backgroundColor:'black'}}></span>
                                         <span onClick={(e)=>navFunction(e,'login')} style={{fontSize:'12px', cursor:'pointer', color:'black'}}>로그인</span>
+                                        <span style={{width:'1px', height:'15px', margin:'0px 12px', backgroundColor:'black'}}></span>
+                                        <span onClick={(e)=>navFunction(e,'chat')} style={{fontSize:'12px', cursor:'pointer', color:'black'}}>채팅</span>
                                     </div>
                                 )
                         }
