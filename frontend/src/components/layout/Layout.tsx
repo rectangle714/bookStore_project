@@ -11,7 +11,7 @@ const Layout: React.FC<Props> = (props) => {
 
     return (
         <>
-            <div style={{minHeight:'100%'}}>
+            <div style={{height:'100%'}}>
                 <Header />
                 <main className={Styles.main}>
                     {props.children}
