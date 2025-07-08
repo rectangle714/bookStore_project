@@ -30,19 +30,46 @@
 ## 💻 DevOps
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white) ![Jenkins](https://img.shields.io/badge/jenkins-%232C5263.svg?style=for-the-badge&logo=jenkins&logoColor=white) ![AWS](https://img.shields.io/badge/Amazon%20AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white)
 
-## **화면 설명**
-### 사용자
+---
 
-| 메인 | 회원가입 | 
-| :---: | :---: |
-| ![메인](https://github.com/rectangle714/bootPrj/assets/62207860/737ef0d5-7ff2-4dce-9ead-cf37764a77c7) | ![회원가입](https://github.com/rectangle714/bootPrj/assets/62207860/fca792d7-fe2f-4d5c-9689-5972d234e908)
+## 👤 사용자 화면
 
-로그인 | 네이버로그인 | 카카오로그인 |
-| :---: | :---: | :---: |
-| ![로그인](https://github.com/rectangle714/bootPrj/assets/62207860/13262087-ebad-4758-a34c-ec0372ea3041) | ![네이버로그인](https://github.com/rectangle714/bootPrj/assets/62207860/34919148-1163-4076-bd59-aa75f7b14b64) | ![카카오로그인](https://github.com/rectangle714/bootPrj/assets/62207860/8daa2257-3d35-4cfd-b20d-59d8ff714ac1) |
+### 🏠 메인
+![메인](https://github.com/rectangle714/bootPrj/assets/62207860/737ef0d5-7ff2-4dce-9ead-cf37764a77c7)
 
-### 관리자
+---
 
-| 회원정보 | 상품등록 | 상품조회 |
-| :---: | :---: | :---: |
-| ![회원정보](https://github.com/rectangle714/bootPrj/assets/62207860/744f2b4e-5d89-4e3b-961b-b20296c8ae3b) | ![상품등록](https://github.com/rectangle714/bootPrj/assets/62207860/f27ef9ec-26c4-4b06-8764-b69762fec9bb) | ![상품조회](https://github.com/rectangle714/bootPrj/assets/62207860/1823fb72-161a-4566-9b34-0d9eb2f9685d) |
+### 📝 회원가입
+![회원가입](https://github.com/rectangle714/bootPrj/assets/62207860/fca792d7-fe2f-4d5c-9689-5972d234e908)
+
+---
+
+### 🔐 로그인
+![로그인](https://github.com/rectangle714/bootPrj/assets/62207860/13262087-ebad-4758-a34c-ec0372ea3041)
+
+### 🟢 네이버 로그인
+![네이버로그인](https://github.com/rectangle714/bootPrj/assets/62207860/34919148-1163-4076-bd59-aa75f7b14b64)
+
+### 🟡 카카오 로그인
+![카카오로그인](https://github.com/rectangle714/bootPrj/assets/62207860/8daa2257-3d35-4cfd-b20d-59d8ff714ac1)
+
+---
+
+## 🛠️ 관리자 화면
+
+### 👥 회원 정보 조회
+![회원정보](https://github.com/rectangle714/bootPrj/assets/62207860/744f2b4e-5d89-4e3b-961b-b20296c8ae3b)
+
+---
+
+### 📦 상품 등록
+![상품등록](https://github.com/rectangle714/bootPrj/assets/62207860/f27ef9ec-26c4-4b06-8764-b69762fec9bb)
+
+---
+
+### 🔍 상품 조회
+![상품조회](https://github.com/rectangle714/bootPrj/assets/62207860/1823fb72-161a-4566-9b34-0d9eb2f9685d)
+
+---
+
+
