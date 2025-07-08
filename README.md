@@ -53,6 +53,9 @@
 ### 🟡 카카오 로그인
 ![카카오로그인](https://github.com/rectangle714/bootPrj/assets/62207860/8daa2257-3d35-4cfd-b20d-59d8ff714ac1)
 
+### - 마이페이지
+![마이페이지](https://github.com/user-attachments/assets/412e9dc3-09c9-417f-a063-03c18a940e81)
+
 ---
 
 ## 🛠️ 관리자 화면
