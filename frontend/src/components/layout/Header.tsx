@@ -26,7 +26,7 @@ const Header = () => {
         } else if(path == 'cart') {
             navigate('/cart');
         } else if(path == 'chat') {
-            window.location.href = 'http://localhost:3001';
+            window.location.href = `http://${process.env.REACT_APP_CHAT_URL}:3001`;
         }
     }
     

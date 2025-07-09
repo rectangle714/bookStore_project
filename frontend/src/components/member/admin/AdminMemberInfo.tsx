@@ -64,7 +64,7 @@ const AdminMemberInfo = () => {
     <Box sx={{ padding: 4 }}>
       <Paper elevation={3} sx={{ padding: 3, borderRadius: 3 }}>
         <Typography variant="h6" fontWeight="bold" gutterBottom>
-          👥 회원 정보 관리
+          회원 정보 관리
         </Typography>
 
         <Box sx={{ height: 600, width: '100%', mt: 2 }}>

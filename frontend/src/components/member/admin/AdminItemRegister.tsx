@@ -103,10 +103,10 @@ const AdminItemRegister = () => {
 
   return (
     <>
-      <Box sx={{ maxWidth: 1000, margin: "50px auto" }}>
-        <Paper elevation={3} sx={{ p: 5, borderRadius: 3 }}>
+      <Box sx={{ padding: 4 }}>
+        <Paper elevation={3} sx={{ padding: 12, borderRadius: 3 }}>
           <Typography variant="h5" fontWeight="bold" gutterBottom>
-            📦 상품 등록
+            상품 등록
           </Typography>
 
           <Box

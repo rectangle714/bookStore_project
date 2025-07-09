@@ -109,7 +109,7 @@ const AdminItemList = () => {
     <Box sx={{ maxWidth: 1100, mx: "auto", mt: 5 }}>
       <Paper elevation={3} sx={{ p: 4, borderRadius: 2 }}>
         <Typography variant="h6" fontWeight="bold" gutterBottom>
-          📋 상품 목록
+          상품 목록
         </Typography>
 
         <Box sx={{ height: 600, width: "100%", mt: 2 }}>
