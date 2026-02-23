@@ -55,14 +55,14 @@
 
 <br>
 
-### 3. Admin & MyPage
+<!-- ### 3. Admin & MyPage
 | 관리자 - 회원 조회 | 관리자 - 상품 등록 |
 | :---: | :---: |
 | <img src="https://github.com/user-attachments/assets/7e19cb20-0d11-4bd0-bbc8-d399e25cec12" width="100%"> | <img src="https://github.com/user-attachments/assets/a86cbdb2-2beb-4d99-add2-b569f08f0e8d" width="100%"> |
 
 |                                               관리자 - 상품 조회                                                |                                                  마이페이지                                                   |
 | :------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------: |
-| <img src="https://github.com/user-attachments/assets/002599cd-67e1-4552-9f45-68e4ca9869b5" width="100%"> | <img src="https://github.com/user-attachments/assets/412e9dc3-09c9-417f-a063-03c18a940e81" width="100%"> |
+| <img src="https://github.com/user-attachments/assets/002599cd-67e1-4552-9f45-68e4ca9869b5" width="100%"> | <img src="https://github.com/user-attachments/assets/412e9dc3-09c9-417f-a063-03c18a940e81" width="100%"> | -->
 
 
 
